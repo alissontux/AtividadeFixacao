@@ -16,6 +16,13 @@ public class RebeldeModel {
     private String genero;
     @Column(nullable = false, length = 200)
     private String localizacao;
+    @Column(name = "traidor")
+    private boolean traidor;
+    @Column(name = "reportes_Traicao")
+    private int reportesTraicao;
+    @Column(name = "rebelde_Ativo")
+    private boolean rebeldeAtivo = true;
+
 
     public RebeldeModel(String nome, int idade, String genero, String localizacao) {
         this.nome = nome;
@@ -65,5 +72,33 @@ public class RebeldeModel {
 
     public void setLocalizacao(String localizacao) {
         this.localizacao = localizacao;
+    }
+
+    public boolean isTraidor() {
+        return traidor;
+    }
+
+    public void setTraidor(boolean traidor) {
+        this.traidor = traidor;
+    }
+
+    public int getReportesTraicao() {
+        return reportesTraicao;
+    }
+
+    public void setReportesTraicao(int reportesTraicao) {
+        this.reportesTraicao = reportesTraicao;
+    }
+
+    public boolean isRebeldeAtivo() {
+        return rebeldeAtivo;
+    }
+
+    public void setRebeldeAtivo(boolean rebeldeAtivo) {
+        this.rebeldeAtivo = rebeldeAtivo;
+    }
+
+    public void incrementarreportestraicao(){
+        reportesTraicao++;
     }
 }

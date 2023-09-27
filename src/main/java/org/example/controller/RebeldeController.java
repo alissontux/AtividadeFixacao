@@ -24,4 +24,9 @@ public class RebeldeController {
     public RebeldeModel atualizarRebeldes(@PathVariable Long id){
         return rebeldeService.atualizarLocalizacaoRebeldes(id);
     }
+    @PostMapping("/{id}/traicao")
+    public RebeldeModel reportartraicao(@PathVariable Long id){
+        return rebeldeService.reportartraicao(id);
+
+    }
 }
