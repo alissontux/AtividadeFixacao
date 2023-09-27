@@ -44,4 +44,16 @@ public class RebeldeService {
 
         return repository.save(rebeldeModel);
     }
+    public RebeldeModel reportartraicao(Long id){
+        RebeldeModel rebeldeModel = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Rebelde não encontrado"));
+        if (rebeldeModel.isTraidor()){
+           throw new EntityNotFoundException("Este rebelde já é um traidor");
+        }
+        rebeldeModel.incrementarreportestraicao();
+        if (rebeldeModel.getReportesTraicao()>=3){
+            rebeldeModel.setTraidor(true);
+            rebeldeModel.setRebeldeAtivo(false);
+        }
+        return repository.save(rebeldeModel);
+    }
 }
