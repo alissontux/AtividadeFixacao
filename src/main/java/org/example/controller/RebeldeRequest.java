@@ -1,38 +1,23 @@
-package org.example.model;
+package org.example.controller;
 
-import jakarta.persistence.*;
+import java.util.Map;
 
-@Entity
-@Table(name = "rebeldes")
-public class RebeldeModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(nullable = false, length = 200)
+public class RebeldeRequest {
     private String nome;
-    @Column(nullable = false, length = 3)
     private int idade;
-    @Column(nullable = false, length = 12)
     private String genero;
-    @Column(nullable = false, length = 200)
     private String localizacao;
+    private Map<String, Double> inventario;
 
-    public RebeldeModel(String nome, int idade, String genero, String localizacao) {
+    public RebeldeRequest(String nome, int idade, String genero, String localizacao, Map<String, Double> inventario) {
         this.nome = nome;
         this.idade = idade;
         this.genero = genero;
         this.localizacao = localizacao;
+        this.inventario = inventario;
     }
 
-    public RebeldeModel() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public RebeldeRequest() {
     }
 
     public String getNome() {
@@ -65,5 +50,13 @@ public class RebeldeModel {
 
     public void setLocalizacao(String localizacao) {
         this.localizacao = localizacao;
+    }
+
+    public Map<String, Double> getInventario() {
+        return inventario;
+    }
+
+    public void setInventario(Map<String, Double> inventario) {
+        this.inventario = inventario;
     }
 }
