@@ -7,6 +7,9 @@ import org.example.repository.RebeldeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class RebeldeService {
     private final RebeldeRepository repository;
@@ -16,7 +19,7 @@ public class RebeldeService {
         this.repository = repository;
     }
 
-    public RebeldeModel adicionarRebeldes(RebeldeRequest rebeldeRequest){
+    public RebeldeModel adicionarRebeldes(RebeldeRequest rebeldeRequest) {
 
         if (rebeldeRequest.getNome() == null ||
                 rebeldeRequest.getIdade() <= 0 ||
@@ -37,23 +40,38 @@ public class RebeldeService {
         return repository.save(rebeldeModel);
     }
 
-    public RebeldeModel atualizarLocalizacaoRebeldes(Long id){
+    public RebeldeModel atualizarLocalizacaoRebeldes(Long id) {
         RebeldeModel rebeldeModel = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Rebelde não encontrado por esse id: " + id));
 
         rebeldeModel.setLocalizacao(rebeldeModel.getLocalizacao());
 
         return repository.save(rebeldeModel);
     }
-    public RebeldeModel reportartraicao(Long id){
+
+    public RebeldeModel reportartraicao(Long id) {
         RebeldeModel rebeldeModel = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Rebelde não encontrado"));
-        if (rebeldeModel.isTraidor()){
-           throw new EntityNotFoundException("Este rebelde já é um traidor");
+        if (rebeldeModel.isTraidor()) {
+            throw new EntityNotFoundException("Este rebelde já é um traidor");
         }
         rebeldeModel.incrementarreportestraicao();
-        if (rebeldeModel.getReportesTraicao()>=3){
+        if (rebeldeModel.getReportesTraicao() >= 3) {
             rebeldeModel.setTraidor(true);
             rebeldeModel.setRebeldeAtivo(false);
         }
         return repository.save(rebeldeModel);
+    }
+
+
+    public double contarRebeldes() {
+        List<RebeldeModel> rebeldes = repository.findAll();
+
+        if (rebeldes.isEmpty()) {
+            return 0.0;
+        }
+        return repository.count();
+    }
+
+    public long contarTraidores() {
+        return repository.countByTraidor(true);
     }
 }
