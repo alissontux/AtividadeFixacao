@@ -18,7 +18,8 @@ public class ItemModel {
         this.valor = valor;
     }
 
-
+    public ItemModel() {
+    }
 
     public Long getId() {
         return id;
