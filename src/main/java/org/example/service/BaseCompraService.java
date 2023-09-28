@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class BaseCompraService {
     @Autowired
@@ -16,7 +17,7 @@ public class BaseCompraService {
 
     public BaseCompraService(RebeldeRepository rebeldeRepository) {
         this.rebeldeRepository = rebeldeRepository;
-        itens = new ArrayList<>();
+        this.itens = new ArrayList<>();
         itens.add(new ItemModel("Arma", 100.0));
         itens.add(new ItemModel("Munição", 30.0));
         itens.add(new ItemModel("Água", 5.0));
@@ -27,12 +28,24 @@ public class BaseCompraService {
         return itens;
     }
 
-    public boolean comprarItem(RebeldeModel rebeldeModel,ItemModel itemModel) {
-        if (!rebeldeModel.isRebeldeAtivo()){
-            return false;
+    public boolean comprarItem(RebeldeModel rebelde, String nomeItem) {
+        ItemModel itemSelecionado = null;
+        for (ItemModel item : itens) {
+            if (item.getNome().equalsIgnoreCase(nomeItem)) {
+                itemSelecionado = item;
+                break;
+            }
         }
-        rebeldeModel.adicionarItemAoInventario(itemModel);
-        return true;
-    }
 
+        if (itemSelecionado != null) {
+            if (rebelde.getMoedas() >= itemSelecionado.getValor()) {
+                rebelde.setMoedas(rebelde.getMoedas() - itemSelecionado.getValor());
+                rebelde.adicionarItemAoInventario(itemSelecionado);
+                return true;
+            }
+        }
+        return false;
+    }
 }
+
+
