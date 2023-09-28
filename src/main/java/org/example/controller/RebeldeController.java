@@ -22,8 +22,8 @@ public class RebeldeController {
     }
 
     @PutMapping("/{id}")
-    public RebeldeModel atualizarRebeldes(@PathVariable Long id) {
-        return rebeldeService.atualizarLocalizacaoRebeldes(id);
+    public RebeldeModel atualizarRebeldes(@PathVariable Long id, @RequestBody RebeldeModel rebeldeModel) {
+        return rebeldeService.atualizarLocalizacaoRebeldes(id, rebeldeModel);
     }
 
     @PostMapping("/{id}/traicao")

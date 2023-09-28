@@ -40,12 +40,12 @@ public class RebeldeService {
         return repository.save(rebeldeModel);
     }
 
-    public RebeldeModel atualizarLocalizacaoRebeldes(Long id) {
-        RebeldeModel rebeldeModel = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Rebelde não encontrado por esse id: " + id));
+    public RebeldeModel atualizarLocalizacaoRebeldes(Long id, RebeldeModel rebeldeModel) {
+        RebeldeModel existeRebelde = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Rebelde não encontrado por esse id: " + id));
 
         rebeldeModel.setLocalizacao(rebeldeModel.getLocalizacao());
 
-        return repository.save(rebeldeModel);
+        return repository.save(existeRebelde);
     }
 
     public RebeldeModel reportartraicao(Long id) {

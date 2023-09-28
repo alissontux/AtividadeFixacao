@@ -66,7 +66,7 @@ public class RebeldeServiceTest {
         when(rebeldeRepository.findById(id)).thenReturn(Optional.of(rebeldeModel));
         when(rebeldeRepository.save(any(RebeldeModel.class))).thenReturn(rebeldeModel);
 
-        RebeldeModel resultado = rebeldeService.atualizarLocalizacaoRebeldes(id);
+        RebeldeModel resultado = rebeldeService.atualizarLocalizacaoRebeldes(id, rebeldeModel);
 
         assertNotNull(resultado);
 
@@ -84,7 +84,7 @@ public class RebeldeServiceTest {
         when(rebeldeRepository.findById(id)).thenReturn(Optional.empty());
 
         EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> {
-            rebeldeService.atualizarLocalizacaoRebeldes(id);
+            rebeldeService.atualizarLocalizacaoRebeldes(id, new RebeldeModel());
         });
 
         assertEquals("Rebelde não encontrado por esse id: " + id, exception.getMessage());
