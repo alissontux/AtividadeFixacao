@@ -18,6 +18,17 @@ public class ItemModel {
         this.valor = valor;
     }
 
+    public RebeldeModel getRebeldeModel() {
+        return rebeldeModel;
+    }
+
+    public void setRebeldeModel(RebeldeModel rebeldeModel) {
+        this.rebeldeModel = rebeldeModel;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "rebelde_id")
+    private RebeldeModel rebeldeModel;
     public ItemModel() {
     }
 

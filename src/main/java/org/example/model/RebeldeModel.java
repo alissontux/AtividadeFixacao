@@ -3,6 +3,7 @@ package org.example.model;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "rebeldes")
@@ -24,7 +25,16 @@ public class RebeldeModel {
     private int reportesTraicao;
     @Column(name = "rebelde_Ativo")
     private boolean rebeldeAtivo = true;
+    @OneToMany(mappedBy = "rebelde", cascade = CascadeType.ALL)
+    private List<ItemModel> inventario;
 
+    public List<ItemModel> getInventario() {
+        return inventario;
+    }
+
+    public void setInventario(List<ItemModel> inventario) {
+        this.inventario = inventario;
+    }
 
     public RebeldeModel(String nome, int idade, String genero, String localizacao) {
         this.nome = nome;
@@ -105,6 +115,9 @@ public class RebeldeModel {
     }
 
     public void adicionarItemAoInventario(ItemModel itemSelecionado) {
-
+        if (inventario == null) {
+            inventario = new ArrayList<>();
+        }
+        inventario.add(itemSelecionado);
     }
 }
