@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RebeldeRepository extends JpaRepository<RebeldeModel, Long> {
     long countByTraidor(boolean b);
+
+    long countByRebeldeAtivo(boolean b);
 }

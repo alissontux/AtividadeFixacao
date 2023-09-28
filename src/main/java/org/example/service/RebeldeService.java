@@ -63,8 +63,7 @@ public class RebeldeService {
         return repository.save(rebeldeModel);
     }
 
-
-    public double contarRebeldes() {
+    public double contarTodosRebeldesETraidores(){
         List<RebeldeModel> rebeldes = repository.findAll();
 
         if (rebeldes.isEmpty()) {
@@ -73,9 +72,14 @@ public class RebeldeService {
         return repository.count();
     }
 
+    public double contarRebeldes() {
+        return repository.countByRebeldeAtivo(true);
+    }
+
     public long contarTraidores() {
         return repository.countByTraidor(true);
     }
+
     public RebeldeModel obterRebeldePorId(Long id) {
         Optional<RebeldeModel> rebeldeOptional = repository.findById(id);
         return rebeldeOptional.orElse(null);
