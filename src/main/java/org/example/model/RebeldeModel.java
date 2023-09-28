@@ -28,17 +28,16 @@ public class RebeldeModel {
 
     @Column(nullable = false)
     private double moedas;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "rebelde_id")
-    private List<ItemModel> inventario = new ArrayList<>();
 
-    public List<ItemModel> getInventario() {
-        return inventario;
-    }
+//    private List<ItemModel> inventario = new ArrayList<>();
 
-    public void setInventario(List<ItemModel> inventario) {
-        this.inventario = inventario;
-    }
+//    public List<ItemModel> getInventario() {
+//        return inventario;
+//    }
+
+//    public void setInventario(List<ItemModel> inventario) {
+//        this.inventario = inventario;
+//    }
 
     public RebeldeModel(String nome, int idade, String genero, String localizacao, double moedas) {
         this.nome = nome;
@@ -128,9 +127,9 @@ public class RebeldeModel {
     }
 
     public void adicionarItemAoInventario(ItemModel itemSelecionado) {
-        if (inventario == null) {
-            inventario = new ArrayList<>();
-        }
-        inventario.add(itemSelecionado);
+//        if (inventario == null) {
+//            inventario = new ArrayList<>();
+//        }
+//        inventario.add(itemSelecionado);
     }
 }
