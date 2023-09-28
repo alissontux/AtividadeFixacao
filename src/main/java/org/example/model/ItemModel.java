@@ -12,21 +12,26 @@ public class ItemModel {
     private String nome;
     @Column(nullable = false)
     private double valor;
-    @ManyToOne
-    @JoinColumn(name = "rebelde_id")
-    private RebeldeModel rebeldeModel;
+    @Column(nullable = false)
+    private int quantidade;
+
+
+    public ItemModel(String nome, int quantidade) {
+        this.nome = nome;
+        this.quantidade = quantidade;
+    }
 
     public ItemModel(String nome, double valor) {
         this.nome = nome;
         this.valor = valor;
     }
 
-    public RebeldeModel getRebeldeModel() {
-        return rebeldeModel;
+    public int getQuantidade() {
+        return quantidade;
     }
 
-    public void setRebeldeModel(RebeldeModel rebeldeModel) {
-        this.rebeldeModel = rebeldeModel;
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
     public ItemModel() {

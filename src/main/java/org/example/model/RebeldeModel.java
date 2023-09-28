@@ -25,8 +25,12 @@ public class RebeldeModel {
     private int reportesTraicao;
     @Column(name = "rebelde_Ativo")
     private boolean rebeldeAtivo = true;
-    @OneToMany(mappedBy = "rebeldeModel")
-    private List<ItemModel> inventario;
+
+    @Column
+    private double moedas;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "rebelde_id")
+    private List<ItemModel> inventario = new ArrayList<>();
 
     public List<ItemModel> getInventario() {
         return inventario;
@@ -44,6 +48,14 @@ public class RebeldeModel {
     }
 
     public RebeldeModel() {
+    }
+
+    public double getMoedas() {
+        return moedas;
+    }
+
+    public void setMoedas(double moedas) {
+        this.moedas = moedas;
     }
 
     public Long getId() {

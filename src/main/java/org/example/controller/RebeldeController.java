@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.*;
 public class RebeldeController {
     private final RebeldeService rebeldeService;
     private final BaseCompraService baseCompraService;
+
     @Autowired
     public RebeldeController(RebeldeService rebeldeService, BaseCompraService baseCompraService) {
         this.rebeldeService = rebeldeService;
         this.baseCompraService = baseCompraService;
     }
+
     @PostMapping
     public RebeldeModel adicionarRebeldes(@RequestBody RebeldeRequest rebeldeRequest) {
         return rebeldeService.adicionarRebeldes(rebeldeRequest);
@@ -50,15 +52,21 @@ public class RebeldeController {
 
         return ResponseEntity.ok(porcentagemRebeldes);
     }
+    @GetMapping("/{id}/moedas")
+    public ResponseEntity<Double> obterQuantidadeMoedas(@PathVariable Long id) {
+        RebeldeModel rebelde = rebeldeService.obterRebeldePorId(id);
+        return ResponseEntity.ok(rebelde.getMoedas());
+    }
+
     @PostMapping("/{id}/comprar")
-    public ResponseEntity<String> comprarItem(@PathVariable Long id){
-        RebeldeModel rebeldeModel = rebeldeService.obterRebeldePorId(id);
-//        boolean compraSucesso = baseCompraService.comprarItem(rebeldeModel);
-//        if (compraSucesso ){
-//            return ResponseEntity.ok("Compra efetuada com sucesso");
-//        }else {
-//            return ResponseEntity.badRequest().body("Compra falhou");
-//        }
-        return null;
+    public ResponseEntity<String> comprarItem(@PathVariable Long id, @RequestBody String nomeItem) {
+        RebeldeModel rebelde = rebeldeService.obterRebeldePorId(id);
+        boolean compraSucesso = baseCompraService.comprarItem(rebelde, nomeItem);
+
+        if (compraSucesso) {
+            return ResponseEntity.ok("Compra efetuada com sucesso");
+        } else {
+            return ResponseEntity.badRequest().body("Compra falhou");
+        }
     }
 }
