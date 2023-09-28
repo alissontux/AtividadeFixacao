@@ -48,7 +48,7 @@ public class RebeldeController {
     public ResponseEntity<Double> calcularPocentagemRebeldes() {
         double totalRebeldes = rebeldeService.contarRebeldes();
         long traidores = rebeldeService.contarTraidores();
-        double porcentagemRebeldes = ((double) traidores - totalRebeldes) / totalRebeldes * 100;
+        double porcentagemRebeldes = (  traidores) / totalRebeldes * 100;
 
         return ResponseEntity.ok(porcentagemRebeldes);
     }
