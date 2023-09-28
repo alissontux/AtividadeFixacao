@@ -3,19 +3,24 @@ package org.example.service;
 import jakarta.persistence.EntityNotFoundException;
 import org.example.model.ItemModel;
 import org.example.model.RebeldeModel;
+import org.example.repository.ItemRepository;
 import org.example.repository.RebeldeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ItemService {
 
 
     private final RebeldeRepository rebeldeRepository;
+    private final ItemRepository itemRepository;
 
     @Autowired
-    public ItemService(RebeldeRepository rebeldeRepository) {
+    public ItemService(RebeldeRepository rebeldeRepository, ItemRepository itemRepository) {
         this.rebeldeRepository = rebeldeRepository;
+        this.itemRepository = itemRepository;
     }
 
     public RebeldeModel comprarItem(Long id, String nomeItem) {
@@ -51,5 +56,9 @@ public class ItemService {
         rebeldeModel.adicionarItemAoInventario(itemSelecionado);
 
         return rebeldeRepository.save(rebeldeModel);
+    }
+
+    public List<ItemModel> listarItens() {
+        return itemRepository.findAll();
     }
 }
