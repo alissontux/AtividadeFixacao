@@ -27,13 +27,12 @@ public class BaseCompraService {
         return itens;
     }
 
-    public boolean comprarItem(RebeldeModel rebeldeModel, String nome) {
-        for (ItemModel itemModel : itens) {
-            itemModel.getNome().equalsIgnoreCase(nome);
-            rebeldeModel.adicionarItemAoInventario(itemModel);
-            return true;
+    public boolean comprarItem(RebeldeModel rebeldeModel,ItemModel itemModel) {
+        if (!rebeldeModel.isRebeldeAtivo()){
+            return false;
         }
-        return false;
+        rebeldeModel.adicionarItemAoInventario(itemModel);
+        return true;
     }
 
 }

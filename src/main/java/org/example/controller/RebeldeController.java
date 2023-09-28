@@ -51,13 +51,14 @@ public class RebeldeController {
         return ResponseEntity.ok(porcentagemRebeldes);
     }
     @PostMapping("/{id}/comprar")
-    public ResponseEntity<String> comprarItem(@PathVariable Long id, @RequestBody String nome){
+    public ResponseEntity<String> comprarItem(@PathVariable Long id){
         RebeldeModel rebeldeModel = rebeldeService.obterRebeldePorId(id);
-        boolean compraSucesso = baseCompraService.comprarItem(rebeldeModel,nome);
-        if (compraSucesso ){
-            return ResponseEntity.ok("Compra efetuada com sucesso");
-        }else {
-            return ResponseEntity.badRequest().body("Compra falhou");
-        }
+//        boolean compraSucesso = baseCompraService.comprarItem(rebeldeModel);
+//        if (compraSucesso ){
+//            return ResponseEntity.ok("Compra efetuada com sucesso");
+//        }else {
+//            return ResponseEntity.badRequest().body("Compra falhou");
+//        }
+        return null;
     }
 }
