@@ -25,7 +25,7 @@ public class RebeldeModel {
     private int reportesTraicao;
     @Column(name = "rebelde_Ativo")
     private boolean rebeldeAtivo = true;
-    @OneToMany(mappedBy = "rebelde", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "rebeldeModel")
     private List<ItemModel> inventario;
 
     public List<ItemModel> getInventario() {
