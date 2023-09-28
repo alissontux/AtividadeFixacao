@@ -45,7 +45,7 @@ public class RebeldeService {
 
         rebeldeModel.setLocalizacao(rebeldeModel.getLocalizacao());
 
-        return repository.save(rebeldeModel);
+        return repository.save(existeRebelde);
     }
 
     public RebeldeModel reportartraicao(Long id) {
