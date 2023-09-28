@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RebeldeService {
@@ -73,5 +74,9 @@ public class RebeldeService {
 
     public long contarTraidores() {
         return repository.countByTraidor(true);
+    }
+    public RebeldeModel obterRebeldePorId(Long id) {
+        Optional<RebeldeModel> rebeldeOptional = repository.findById(id);
+        return rebeldeOptional.orElse(null);
     }
 }
