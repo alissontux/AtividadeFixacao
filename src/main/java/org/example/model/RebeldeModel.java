@@ -101,4 +101,8 @@ public class RebeldeModel {
     public void incrementarreportestraicao(){
         reportesTraicao++;
     }
+
+    public void adicionarItemAoInventario(ItemModel itemSelecionado) {
+
+    }
 }

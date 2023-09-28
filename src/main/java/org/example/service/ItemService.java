@@ -12,41 +12,44 @@ public class ItemService {
 
 
     private final RebeldeRepository rebeldeRepository;
+
     @Autowired
-    public ItemService(RebeldeRepository rebeldeRepository){
+    public ItemService(RebeldeRepository rebeldeRepository) {
         this.rebeldeRepository = rebeldeRepository;
     }
 
-    public RebeldeModel comprarItem(Long id, String nomeItem){
+    public RebeldeModel comprarItem(Long id, String nomeItem) {
         RebeldeModel rebeldeModel = rebeldeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Rebelde não encontrado"));
-        if (!rebeldeModel.isRebeldeAtivo()){
+
+        if (!rebeldeModel.isRebeldeAtivo()) {
             throw new EntityNotFoundException("Rebelde não pode comprar o item");
         }
-        ItemModel arma = new ItemModel("Arma", 100.0);
-        ItemModel municao = new ItemModel("Munição", 30.0);
-        ItemModel agua = new ItemModel("Água", 5.0);
-        ItemModel comida = new ItemModel("Comida", 15.0);
-        ItemModel itemSelecionado = null;
-        switch (nomeItem){
-            case "Arma":
-                itemSelecionado = arma;
+
+        ItemModel itemSelecionado;
+
+        switch (nomeItem) {
+            case "arma":
+                itemSelecionado = new ItemModel("Arma", 100.0);
                 break;
 
-            case "Munição":
-                itemSelecionado = municao;
+            case "municao":
+                itemSelecionado = new ItemModel("Munição", 30.0);
                 break;
 
-            case "Água":
-                itemSelecionado = agua;
+            case "agua":
+                itemSelecionado = new ItemModel("Água", 5.0);
                 break;
 
-            case "Comida":
-                itemSelecionado = comida;
+            case "comida":
+                itemSelecionado = new ItemModel("Comida", 15.0);
                 break;
 
             default:
                 throw new EntityNotFoundException("Item não existe");
         }
+
+        rebeldeModel.adicionarItemAoInventario(itemSelecionado);
+
         return rebeldeRepository.save(rebeldeModel);
     }
 }
