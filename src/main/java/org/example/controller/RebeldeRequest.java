@@ -7,14 +7,24 @@ public class RebeldeRequest {
     private int idade;
     private String genero;
     private String localizacao;
+    private double moedas;
     private Map<String, Double> inventario;
 
-    public RebeldeRequest(String nome, int idade, String genero, String localizacao, Map<String, Double> inventario) {
+    public RebeldeRequest(String nome, int idade, String genero, String localizacao, double moedas, Map<String, Double> inventario) {
         this.nome = nome;
         this.idade = idade;
         this.genero = genero;
         this.localizacao = localizacao;
+        this.moedas = moedas;
         this.inventario = inventario;
+    }
+
+    public double getMoedas() {
+        return moedas;
+    }
+
+    public void setMoedas(double moedas) {
+        this.moedas = moedas;
     }
 
     public RebeldeRequest() {

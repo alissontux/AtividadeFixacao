@@ -26,7 +26,7 @@ public class RebeldeModel {
     @Column(name = "rebelde_Ativo")
     private boolean rebeldeAtivo = true;
 
-    @Column
+    @Column(nullable = false)
     private double moedas;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "rebelde_id")
@@ -40,11 +40,12 @@ public class RebeldeModel {
         this.inventario = inventario;
     }
 
-    public RebeldeModel(String nome, int idade, String genero, String localizacao) {
+    public RebeldeModel(String nome, int idade, String genero, String localizacao, double moedas) {
         this.nome = nome;
         this.idade = idade;
         this.genero = genero;
         this.localizacao = localizacao;
+        this.moedas = moedas;
     }
 
     public RebeldeModel() {

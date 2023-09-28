@@ -37,6 +37,7 @@ public class RebeldeService {
         rebeldeModel.setGenero(rebeldeRequest.getGenero());
         rebeldeModel.setLocalizacao(rebeldeRequest.getLocalizacao());
         rebeldeRequest.setInventario(rebeldeRequest.getInventario());
+        rebeldeModel.setMoedas(rebeldeRequest.getMoedas());
 
         return repository.save(rebeldeModel);
     }
