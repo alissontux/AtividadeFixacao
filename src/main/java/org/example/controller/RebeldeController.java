@@ -37,9 +37,9 @@ public class RebeldeController {
 
     @GetMapping("/porcentagemTraidores")
     public ResponseEntity<Double> calcularPorcentagemTraidores() {
-        double totalRebeldes = rebeldeService.contarRebeldes();
+        double todos = rebeldeService.contarTodosRebeldesETraidores();
         long traidores = rebeldeService.contarTraidores();
-        double porcentagemTraidores = ((double) traidores / totalRebeldes) * 100;
+        double porcentagemTraidores = ((double) traidores / todos) * 100;
 
         return ResponseEntity.ok(porcentagemTraidores);
     }
@@ -48,7 +48,6 @@ public class RebeldeController {
     public ResponseEntity<Double> calcularPocentagemRebeldes() {
         double todos = rebeldeService.contarTodosRebeldesETraidores();
 
-        //buscar a quantidade de rebeldes
         double totalRebeldes = rebeldeService.contarRebeldes();
 
         double porcentagemRebeldes = (  totalRebeldes) / todos * 100;
