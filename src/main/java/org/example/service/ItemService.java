@@ -27,7 +27,7 @@ public class ItemService {
 
         ItemModel itemSelecionado;
 
-        switch (nomeItem) {
+        switch (nomeItem.toLowerCase()) {
             case "arma":
                 itemSelecionado = new ItemModel("Arma", 100.0);
                 break;
