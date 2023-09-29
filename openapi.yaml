@@ -1,0 +1,172 @@
+openapi: 3.0.0
+info:
+  title: Rebel Management API
+  description: |
+    The Rebel Management API was created to assist rebels in their fight against the Empire. It allows for the registration of rebels, management of their resources, updating their location, and identifying traitors. Additionally, the API provides reports on the percentage of traitors and rebels and allows rebels to purchase essential items at the base.
+  version: 1.0.0
+paths:
+  /rebels:
+    post:
+      summary: Add Rebel
+      description: |
+        Allows the registration of a new rebel with personal information and their inventory of resources.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Rebel'
+      responses:
+        '201':
+          description: Rebel registered successfully
+  /rebels/{id}/location:
+    put:
+      summary: Update Rebel's Location
+      description: |
+        Allows a rebel to update their last location by indicating the name of the new base.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Rebel ID
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                location:
+                  type: string
+            example:
+              location: Rebel Base 2
+      responses:
+        '204':
+          description: Rebel's location updated successfully
+  /rebels/{id}/traitor:
+    post:
+      summary: Report Rebel as Traitor
+      description: |
+        Allows other rebels to report a rebel as a traitor. The rebel will be marked as a traitor when at least three other rebels report the betrayal.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Rebel ID
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Rebel marked as traitor
+  /reports/percentage/traitors:
+    get:
+      summary: Percentage of Traitors
+      description: |
+        Returns the percentage of rebels marked as traitors relative to the total number of rebels.
+      responses:
+        '200':
+          description: Percentage of traitors returned successfully
+          content:
+            application/json:
+              example:
+                percentage_traitors: 10.5
+  /reports/percentage/rebels:
+    get:
+      summary: Percentage of Rebels
+      description: |
+        Returns the percentage of active rebels relative to the total number of rebels.
+      responses:
+        '200':
+          description: Percentage of rebels returned successfully
+          content:
+            application/json:
+              example:
+                percentage_rebels: 89.5
+  /purchases:
+    post:
+      summary: Purchases at the Base
+      description: |
+        Allows rebels to purchase essential items at the base using the resources available in their inventory.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Purchase'
+      responses:
+        '201':
+          description: Purchase completed successfully
+  /rebels/list:
+    get:
+      summary: List Rebels
+      description: |
+        Returns a list of all rebels registered in the system.
+      responses:
+        '200':
+          description: List of rebels returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Rebel'
+components:
+  schemas:
+    Rebel:
+      type: object
+      properties:
+        name:
+          type: string
+        age:
+          type: integer
+          format: int32
+        gender:
+          type: string
+        location:
+          type: string
+        inventory:
+          $ref: '#/components/schemas/Inventory'
+      required:
+        - name
+        - age
+        - gender
+        - location
+        - inventory
+    Inventory:
+      type: object
+      properties:
+        weapon:
+          type: integer
+          format: int32
+        ammunition:
+          type: integer
+          format: int32
+        water:
+          type: integer
+          format: int32
+        food:
+          type: integer
+          format: int32
+    Purchase:
+      type: object
+      properties:
+        rebelId:
+          type: integer
+          format: int64
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              item:
+                type: string
+              quantity:
+                type: integer
+                format: int32
+              value:
+                type: integer
+                format: int32
