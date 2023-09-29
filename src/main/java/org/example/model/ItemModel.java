@@ -12,9 +12,7 @@ public class ItemModel {
     private String nome;
     @Column(nullable = false)
     private double valor;
-//    @ManyToOne
-//    @JoinColumn(name = "rebelde_id")
-//    private RebeldeModel rebeldeModel;
+
 
     public ItemModel(String nome, double valor) {
         this.nome = nome;
