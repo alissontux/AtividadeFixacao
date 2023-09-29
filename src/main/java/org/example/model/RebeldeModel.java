@@ -29,12 +29,11 @@ public class RebeldeModel {
     @Column(nullable = false)
     private double moedas;
 
-//    private List<ItemModel> inventario = new ArrayList<>();
 
 //    public List<ItemModel> getInventario() {
 //        return inventario;
 //    }
-
+//
 //    public void setInventario(List<ItemModel> inventario) {
 //        this.inventario = inventario;
 //    }

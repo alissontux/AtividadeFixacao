@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.controller.request.ItemRequest;
 import org.example.model.RebeldeModel;
 import org.example.service.BaseCompraService;
 import org.example.service.RebeldeService;
@@ -61,14 +62,17 @@ public class RebeldeController {
     }
 
     @PostMapping("/{id}/comprar")
-    public ResponseEntity<String> comprarItem(@PathVariable Long id, @RequestBody String nomeItem) {
+    public ResponseEntity<String> comprarItem(@PathVariable Long id, @RequestBody ItemRequest itemRequest) {
         RebeldeModel rebelde = rebeldeService.obterRebeldePorId(id);
-        boolean compraSucesso = baseCompraService.comprarItem(rebelde, nomeItem);
+        if(rebelde == null) return ResponseEntity.badRequest().body("Rebelde nao encontrado");
+        if(!rebelde.isRebeldeAtivo()) return ResponseEntity.badRequest().body("Rebelde nao ativo");
 
-        if (compraSucesso) {
-            return ResponseEntity.ok("Compra efetuada com sucesso");
-        } else {
-            return ResponseEntity.badRequest().body("Compra falhou");
-        }
+       try{
+           boolean b = baseCompraService.comprarItem(rebelde, itemRequest.getNome());
+           if(!b) return ResponseEntity.ok("Compra nao efetuada. Sem saldo.");//todo colocar exception handler
+           return ResponseEntity.ok("Compra efetuada com sucesso");
+       }catch (Exception exception){
+           return ResponseEntity.badRequest().body("Compra falhou");
+       }
     }
 }
