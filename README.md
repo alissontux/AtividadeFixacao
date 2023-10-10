@@ -75,8 +75,24 @@ Retorna a porcentagem de rebeldes ativos.
 ```http
 POST /compras
 ```
-
 Permite que rebeldes comprem itens na base. Veja um exemplo no README.
+
+### Inserir item:
+```
+INSERT INTO ITEM ("ID", "NOME", "VALOR") VALUES (1, 'carro', 50.0)
+```
+
+---
+
+## H2
+
+* url: http://localhost:8080/h2
+* JDBC URL: jdbc:h2:mem:teste
+
+
+---
+
+
 
 ## ⚙️ Configurando o Pipeline
 
