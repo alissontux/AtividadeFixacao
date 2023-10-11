@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "17c61039-d525-4196-8b75-1d3efe33e3d5",
+		"name": "Mentoria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14823859"
+	},
+	"item": [
+		{
+			"name": "porcentagem traidores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rebeldes/porcentagemTraidores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebeldes",
+						"porcentagemTraidores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "porcentagem rebeldes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rebeldes/porcentagemTraidores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebeldes",
+						"porcentagemTraidores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "qtde moedas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rebeldes/1/moedas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebeldes",
+						"1",
+						"moedas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cadastra rebelde",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Nome Teste 2\",\r\n    \"idade\": 23,\r\n    \"genero\": \"masculino\",\r\n    \"localizacao\": \"Sao Paulo\",\r\n    \"moedas\": 200.0,\r\n    \"inventario\": {\r\n        \"item-1\": 10.0,\r\n        \"item-2\": 50.0\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/rebeldes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebeldes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "atualiza rebelde",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Nome Teste id 1\",\r\n    \"idade\": 43,\r\n    \"genero\": \"masculino\",\r\n    \"localizacao\": \"Joinvile\",\r\n    \"moedas\": 100.0,\r\n    \"inventario\": {\r\n        \"item-1\": 10.0\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/rebeldes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebeldes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reporta traicao",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Nome Teste id 1\",\r\n    \"idade\": 43,\r\n    \"genero\": \"masculino\",\r\n    \"localizacao\": \"Joinvile\",\r\n    \"moedas\": 100.0,\r\n    \"inventario\": {\r\n        \"item-1\": 10.0\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/rebeldes/1/traicao",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebeldes",
+						"1",
+						"traicao"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "comprar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"carro\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/rebeldes/1/comprar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebeldes",
+						"1",
+						"comprar"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
