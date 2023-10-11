@@ -89,6 +89,13 @@ INSERT INTO ITEM ("ID", "NOME", "VALOR") VALUES (1, 'carro', 50.0)
 * url: http://localhost:8080/h2
 * JDBC URL: jdbc:h2:mem:teste
 
+--
+
+## Docker
+* 1 acessar via console e entrar na pasta "docker" onde esta o arquivo "docker-compose.yml"
+* 2 rodar o comando docker compose up
+* verificar se docker está ligado> docker -v
+
 
 ---
 
